@@ -2,7 +2,7 @@ import os
 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 from animal_classification.forms import UploadImageForm
 from animal_classification.models import Image, ClassificationResult
@@ -73,4 +73,13 @@ class ClassificationResultView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         print(context)
+        return context
+
+
+class ResultListView(ListView):
+    model = ClassificationResult
+    template_name = 'animal/result_list.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context

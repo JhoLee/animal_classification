@@ -1,11 +1,20 @@
+{% extends 'animal/layout.html' %}
+{% block content %}
 <h1>검사 결과</h1>
 <img src="{{object.origin.content.url}}" width="auto" height="auto"/>
-{% if object.label == 'Dog' %}
-<p>아마... 개인듯?</p>
-{% elif object.label == 'Cat' %}
-<p>아마... 고냥인듯?</p>
-{% endif %}
-<p>{{object.probability}}%로...</p>
-
+<blockquote>
+    <p>아마...
+        <mark>
+            {% if object.label == 'Dog' %}
+            개
+            {% elif object.label == 'Cat' %}
+            고냥이
+            {% endif %}
+        </mark>
+        인듯?
+    </p>
+    <footer>그저 <cite title="probability">({{object.probability}} X 100)% </cite>로...</footer>
+</blockquote>
 
 <button><a href="{% url 'animal:upload' %}">다른 사진 검사하기</a></button>
+{% endblock %}

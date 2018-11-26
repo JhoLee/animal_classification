@@ -1,7 +1,7 @@
 from django.urls import path
 
 # from animal_classification.views import IndexView, TestView, UploadView, ImageUpload, ImageDetail, ImageClassify
-from animal_classification.views import upload_image, classify_image, ClassificationResultView
+from animal_classification.views import upload_image, classify_image, ClassificationResultView, ResultListView
 
 app_name = 'animal'
 
@@ -10,6 +10,7 @@ urlpatterns = [
     # path('upload/', ImageUpload.as_view(), name='upload'),
     path('upload/', upload_image, name='upload'),
     path('classify/<pk>/', classify_image, name='classify'),
+    path('result/', ResultListView.as_view(), name='result_list'),
     path('result/<pk>/', ClassificationResultView.as_view(), name='result'),
     # path('detail/<pk>/', ImageDetail.as_view(), name='detail'),
     # path('result/', )

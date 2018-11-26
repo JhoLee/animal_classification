@@ -116,6 +116,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, '_django/static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+STATIC_ROOT = os.path.join(BASE_DIR, '_django/.static_root')
+
 # URL for media files like Image.
 MEDIA_URL = '/media/'  # path to upload.
 MEDIA_ROOT = os.path.join(BASE_DIR, '_django/media')  # directory to save.

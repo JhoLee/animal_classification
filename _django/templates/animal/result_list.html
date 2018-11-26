@@ -1,0 +1,43 @@
+{% extends 'animal/layout.html' %}
+
+{% block breadcrumb %}
+<li><a href="/animal/">Animal</a></li>
+<li><a href="/animal/result/">List</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for object in object_list %}
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img {% src="{{object.origin.content.url}}" alt="{{ object.label}}">
+            <div class="caption">
+                <h3>
+                    {% if object.label == 'Dog' %}
+                    개
+                    {% elif object.label == 'Cat' %}
+                    고양이
+                    {% endif %}
+                    .
+                </h3>
+                <p>
+                    {% if object.probability > 0.09 %}
+                    맞아.
+                    {% elif object.probability > 0.07 %}
+                    맞을걸.
+                    {% elif object.probability > 0.02 %}
+                    아닌가.
+                    {% elif object.probability > 0.01 %}
+                    몰라.
+                    {% endif %}
+
+                </p>
+                <p><a href="{% url 'animal:result' pk=object.pk %}" class="btn btn-primary" role="button">Detail</a> <a
+                        href="#" class="btn btn-default" role="button">누르지마</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<button><a href="{% url 'animal:upload' %}">다른 사진 검사하기</a></button>
+{% endblock %}
